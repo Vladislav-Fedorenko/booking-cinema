@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    postgres:
+      jdbc-url: jdbc:postgresql://localhost:54320/cinema_db
+      username: cinema_user
+      password: cinema_password
+      driver-class-name: org.postgresql.Driver
