@@ -1,24 +1,18 @@
 version: '3.3'
 services:
-  api:
-    image: maven:3.8-openjdk-11-slim
-    working_dir: /app
+  api_openjdk:
+    image: openjdk:11-jre-slim
     volumes:
-      - ./src:/app/src
-      - ./mvnw:/app/mvnw
-      - ./pom.xml:/app/pom.xml
-      - ./.mvn:/app/.mvn
-    command: /bin/bash -c
-      "./mvnw package &&
-      java -XX:MaxRAM=300M -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -jar /app/target/booking-cinema-seats-0.0.1-SNAPSHOT.jar"
+      - ./target/booking-cinema-seats-0.0.1-SNAPSHOT.jar:/app.jar
+    command: "java -XX:MaxRAM=300M -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -jar app.jar"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       POSTGRES_DATABASE_URL: jdbc:postgresql://postgres:5432/cinema_db
       POSTGRES_DATABASE_USERNAME: cinema_user
       POSTGRES_DATABASE_PASSWORD: cinema_password
     ports:
-      - "9000:8080"
-      - "5005:5005"
+      - "8081:8080"
+      - "5006:5005"
 
   postgres:
     image: postgres:13-alpine
