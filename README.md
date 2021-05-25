@@ -18,7 +18,7 @@ $ docker-compose up
   * request
     ```
     curl --request GET \
-      --url 'http://localhost:8081/seats?movieSessionId=0' \
+      --url 'http://localhost:8081/seats?movieSessionId=1' \
       --header 'Content-Type: application/json;'
     ```
   * response
@@ -103,7 +103,7 @@ $ docker-compose up
       --url http://localhost:8081/seats \
       --header 'Content-Type: application/json' \
       --data '{
-    	"movieSessionId": 1,
+    	"movieSessionId": 0,
     	"seats": [-1, 3, 4, 5, 5, 6, 7, 11, 1, 11, 11, 11, 11, 2]
     }'
     ```
